@@ -19,12 +19,10 @@
 		ABE88BCE26D98A29001E4DCE /* PhotoGalleryPresenterToRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88BBC26D98A29001E4DCE /* PhotoGalleryPresenterToRouterProtocol.swift */; };
 		ABE88BCF26D98A29001E4DCE /* PhotoGalleryPresenterToViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88BBD26D98A29001E4DCE /* PhotoGalleryPresenterToViewProtocol.swift */; };
 		ABE88BD026D98A29001E4DCE /* PhotoGalleryDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88BC026D98A29001E4DCE /* PhotoGalleryDataProvider.swift */; };
-		ABE88BD126D98A29001E4DCE /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = ABE88BC126D98A29001E4DCE /* .gitignore */; };
 		ABE88BD226D98A29001E4DCE /* PhotoGalleryViewToPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88BC326D98A29001E4DCE /* PhotoGalleryViewToPresenterProtocol.swift */; };
 		ABE88BD326D98A29001E4DCE /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88BC426D98A29001E4DCE /* ImageCollectionViewCell.swift */; };
 		ABE88BD426D98A29001E4DCE /* SwiftPhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88BC526D98A29001E4DCE /* SwiftPhotoGalleryViewController.swift */; };
 		ABE88BD526D98A29001E4DCE /* SwiftPhotoGalleryModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88BC726D98A29001E4DCE /* SwiftPhotoGalleryModule.swift */; };
-		ABE88BD626D98A29001E4DCE /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = ABE88BC826D98A29001E4DCE /* .travis.yml */; };
 		D3AB1A9D0E7062165131D31A9318AEBD /* ATSwiftPhotoGallery-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BAAB44DF19C7B86D0703D9CA2A9679DC /* ATSwiftPhotoGallery-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD57A9ABFE4142287FE0DD9B625B9C08 /* Pods-ATSwiftPhotoGallery_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEB0355D7170D20533E3DB8B4F1B01F /* Pods-ATSwiftPhotoGallery_Tests-dummy.m */; };
 		DEFE45F953DA25C5470F649EEA8B8E6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -80,12 +78,10 @@
 		ABE88BBC26D98A29001E4DCE /* PhotoGalleryPresenterToRouterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryPresenterToRouterProtocol.swift; sourceTree = "<group>"; };
 		ABE88BBD26D98A29001E4DCE /* PhotoGalleryPresenterToViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryPresenterToViewProtocol.swift; sourceTree = "<group>"; };
 		ABE88BC026D98A29001E4DCE /* PhotoGalleryDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryDataProvider.swift; sourceTree = "<group>"; };
-		ABE88BC126D98A29001E4DCE /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		ABE88BC326D98A29001E4DCE /* PhotoGalleryViewToPresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewToPresenterProtocol.swift; sourceTree = "<group>"; };
 		ABE88BC426D98A29001E4DCE /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		ABE88BC526D98A29001E4DCE /* SwiftPhotoGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		ABE88BC726D98A29001E4DCE /* SwiftPhotoGalleryModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPhotoGalleryModule.swift; sourceTree = "<group>"; };
-		ABE88BC826D98A29001E4DCE /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .travis.yml; sourceTree = "<group>"; };
 		ACD9A91AE5D148FA691922B5FE7B3816 /* ATSwiftPhotoGallery.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ATSwiftPhotoGallery.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B1E7E2E36D2ED8817F0987B80FA24208 /* ATSwiftPhotoGallery-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ATSwiftPhotoGallery-dummy.m"; sourceTree = "<group>"; };
 		B20DB5059E292135631D64E0A932469D /* ATSwiftPhotoGallery-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ATSwiftPhotoGallery-Info.plist"; sourceTree = "<group>"; };
@@ -193,10 +189,8 @@
 				ABE88BB726D98A29001E4DCE /* Resources */,
 				ABE88BB926D98A29001E4DCE /* Presenter */,
 				ABE88BBF26D98A29001E4DCE /* DataProvider */,
-				ABE88BC126D98A29001E4DCE /* .gitignore */,
 				ABE88BC226D98A29001E4DCE /* View */,
 				ABE88BC626D98A29001E4DCE /* Configurator */,
-				ABE88BC826D98A29001E4DCE /* .travis.yml */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -427,7 +421,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1250;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -454,8 +448,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABE88BD626D98A29001E4DCE /* .travis.yml in Resources */,
-				ABE88BD126D98A29001E4DCE /* .gitignore in Resources */,
 				ABE88BCB26D98A29001E4DCE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,7 +537,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-ATSwiftPhotoGallery_Tests/Pods-ATSwiftPhotoGallery_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-ATSwiftPhotoGallery_Tests/Pods-ATSwiftPhotoGallery_Tests.modulemap";
@@ -615,7 +607,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -643,7 +635,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-ATSwiftPhotoGallery_Tests/Pods-ATSwiftPhotoGallery_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-ATSwiftPhotoGallery_Tests/Pods-ATSwiftPhotoGallery_Tests.modulemap";
@@ -676,7 +668,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-ATSwiftPhotoGallery_Example/Pods-ATSwiftPhotoGallery_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-ATSwiftPhotoGallery_Example/Pods-ATSwiftPhotoGallery_Example.modulemap";
@@ -709,7 +701,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-ATSwiftPhotoGallery_Example/Pods-ATSwiftPhotoGallery_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-ATSwiftPhotoGallery_Example/Pods-ATSwiftPhotoGallery_Example.modulemap";
@@ -741,15 +733,16 @@
 				GCC_PREFIX_HEADER = "Target Support Files/ATSwiftPhotoGallery/ATSwiftPhotoGallery-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/ATSwiftPhotoGallery/ATSwiftPhotoGallery-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ATSwiftPhotoGallery/ATSwiftPhotoGallery.modulemap";
 				PRODUCT_MODULE_NAME = ATSwiftPhotoGallery;
 				PRODUCT_NAME = ATSwiftPhotoGallery;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -772,15 +765,16 @@
 				GCC_PREFIX_HEADER = "Target Support Files/ATSwiftPhotoGallery/ATSwiftPhotoGallery-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/ATSwiftPhotoGallery/ATSwiftPhotoGallery-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/ATSwiftPhotoGallery/ATSwiftPhotoGallery.modulemap";
 				PRODUCT_MODULE_NAME = ATSwiftPhotoGallery;
 				PRODUCT_NAME = ATSwiftPhotoGallery;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -837,7 +831,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

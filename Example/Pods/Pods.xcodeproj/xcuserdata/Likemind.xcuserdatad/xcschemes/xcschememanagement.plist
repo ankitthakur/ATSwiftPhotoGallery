@@ -4,10 +4,10 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ATSwiftPhotoGallery.xcscheme</key>
+		<key>ATSwiftPhotoGallery.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<true/>
 		</dict>
 		<key>Pods-ATSwiftPhotoGallery_Example.xcscheme</key>
 		<dict>
