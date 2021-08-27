@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PJZ-z5-RPn">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="t08-1P-V6d">
+            <objects>
+                <navigationController storyboardIdentifier="SwiftPhotoGalleryNavigationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PJZ-z5-RPn" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HbN-2G-IKt">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="eJK-lg-c9i" kind="relationship" relationship="rootViewController" id="OQt-3w-X3m"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A5z-1G-FhP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-512" y="44"/>
+        </scene>
+        <!--Swift Photo Gallery View Controller-->
+        <scene sceneID="v7e-Rk-nt6">
+            <objects>
+                <viewController storyboardIdentifier="SwiftPhotoGalleryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eJK-lg-c9i" customClass="SwiftPhotoGalleryViewController" customModule="SwiftPhotoGallery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4J4-5i-6MU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Q4o-6N-OSh">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rif-eU-myr">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ImageCollectionViewCell" reuseIdentifier="ImageCollectionViewCell" id="pCA-L1-DcF" customClass="ImageCollectionViewCell" customModule="SwiftPhotoGallery" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DRy-dd-DsA">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nCb-Fy-zgY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="nCb-Fy-zgY" secondAttribute="height" multiplier="1:1" id="IuA-iE-tx7"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nCb-Fy-zgY" firstAttribute="leading" secondItem="DRy-dd-DsA" secondAttribute="leading" id="GkB-yt-ySt"/>
+                                                <constraint firstItem="nCb-Fy-zgY" firstAttribute="centerX" secondItem="DRy-dd-DsA" secondAttribute="centerX" id="b3e-tt-RCE"/>
+                                                <constraint firstItem="nCb-Fy-zgY" firstAttribute="centerY" secondItem="DRy-dd-DsA" secondAttribute="centerY" id="jdH-rN-qZv"/>
+                                                <constraint firstItem="nCb-Fy-zgY" firstAttribute="top" secondItem="DRy-dd-DsA" secondAttribute="top" id="mrb-Eb-5wt"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="galleryImageView" destination="nCb-Fy-zgY" id="iVg-AU-YTa"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="eJK-lg-c9i" id="7nS-DB-p3q"/>
+                                    <outlet property="delegate" destination="eJK-lg-c9i" id="7Dc-Ft-MfA"/>
+                                    <outlet property="prefetchDataSource" destination="eJK-lg-c9i" id="8HI-j8-zyX"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ISR-x7-90b"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Q4o-6N-OSh" firstAttribute="centerX" secondItem="ISR-x7-90b" secondAttribute="centerX" id="4Vd-Qy-Rcs"/>
+                            <constraint firstItem="Q4o-6N-OSh" firstAttribute="centerY" secondItem="ISR-x7-90b" secondAttribute="centerY" id="Cyc-kO-ZIW"/>
+                            <constraint firstItem="Q4o-6N-OSh" firstAttribute="top" secondItem="ISR-x7-90b" secondAttribute="top" id="TyP-Bm-8Ns"/>
+                            <constraint firstItem="Q4o-6N-OSh" firstAttribute="leading" secondItem="ISR-x7-90b" secondAttribute="leading" id="cy0-A9-xfq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="3ZG-u5-BgG"/>
+                    <connections>
+                        <outlet property="galleryCollectionView" destination="Q4o-6N-OSh" id="RaC-UT-Mou"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kOS-v8-pHc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="356" y="44"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
