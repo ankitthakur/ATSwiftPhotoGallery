@@ -1,0 +1,16 @@
+PODS:
+  - ATSwiftPhotoGallery (0.1.0)
+
+DEPENDENCIES:
+  - ATSwiftPhotoGallery (from `../`)
+
+EXTERNAL SOURCES:
+  ATSwiftPhotoGallery:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ATSwiftPhotoGallery: f12723f13330e64853402aabe931013f1f43f012
+
+PODFILE CHECKSUM: 8b00fff78f3bc33452e26818ca99d8982cd2da93
+
+COCOAPODS: 1.10.2

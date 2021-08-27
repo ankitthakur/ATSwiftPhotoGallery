@@ -1,0 +1,6 @@
+framework module ATSwiftPhotoGallery {
+  umbrella header "ATSwiftPhotoGallery-umbrella.h"
+
+  export *
+  module * { export * }
+}

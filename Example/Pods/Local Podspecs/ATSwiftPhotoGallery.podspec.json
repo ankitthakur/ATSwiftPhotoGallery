@@ -1,0 +1,22 @@
+{
+  "name": "ATSwiftPhotoGallery",
+  "version": "0.1.0",
+  "summary": "A short description of ATSwiftPhotoGallery.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/ankitthakur/ATSwiftPhotoGallery",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ankitthakur": "ankitthakur85@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/ankitthakur/ATSwiftPhotoGallery.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "ATSwiftPhotoGallery/Classes/**/*"
+}
