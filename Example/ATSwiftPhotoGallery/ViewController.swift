@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ATSwiftPhotoGallery
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -18,6 +18,16 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func loadSwiftPhotoGallery() {
+        let module = SwiftPhotoGalleryModule()
+        module.build(inputModel: nil) { models, isCancelled in
+            guard let receivedModels = models else {return}
+            print(receivedModels.compactMap{$0.thumbnailImageFilePath})
+        }
+        guard let navigationController = module.navigationController else {return}
+        present(navigationController, animated: true, completion: nil)
     }
 
 }

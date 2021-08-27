@@ -24,6 +24,10 @@ extension PhotoGalleryPresenter: PhotoGalleryDataProviderDelegate {
     func providerDidFetchedAssets() {
         view?.updateFetchedAssetsUI()
     }
+    
+    func showPermissionsPopup() {
+        view?.showPermissionsPopup()
+    }
 }
 
 extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
@@ -55,10 +59,8 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
         for asset in dataProvider.selectedAssets {
             let model = GalleryModel()
             model.duration = asset.duration
-            print("\(#line) mainGroup enter")
             mainGroup.enter()
             let group = DispatchGroup()
-            print("\(#line) enter")
             group.enter()
             group.enter()
             

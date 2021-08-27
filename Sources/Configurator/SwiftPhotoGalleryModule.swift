@@ -33,9 +33,6 @@ public class SwiftPhotoGalleryModule: NSObject {
         navigationController = navController
         viewController = view
         navigationController?.viewControllers = [view]
-
-//        let interactor = OpenSecretChatRoomInteractor(withModuleName: "OpenSecretChatRoom")
-//        let router = OpenSecretChatRoomRouter()
         let presenter = PhotoGalleryPresenter(view: view, withCompletionBlock: completion)
 
         view.presenter = presenter

@@ -75,6 +75,30 @@ extension SwiftPhotoGalleryViewController: PhotoGalleryPresenterToViewProtocol {
         }
     }
     
+    func showPermissionsPopup() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: nil,
+                                          message: "To access gallery, please allow PhotoLibrary in Settings",
+                                          preferredStyle: .alert)
+            let notNowAction = UIAlertAction(title: "Not Now",
+                                             style: .cancel,
+                                             handler: nil)
+            alert.addAction(notNowAction)
+            let settingsAction = UIAlertAction(title: "Settings",
+                                         style: .default){ void in
+                                            guard let url = URL(string: UIApplication.openSettingsURLString),
+                                                UIApplication.shared.canOpenURL(url) else {
+                                                    return
+                                            }
+                                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+            alert.addAction(settingsAction)
+            alert.preferredAction = settingsAction
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
     @objc func cancelTapped() {
         presenter.cancelTapped()
     }

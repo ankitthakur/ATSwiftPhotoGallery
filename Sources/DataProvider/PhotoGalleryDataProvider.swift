@@ -9,6 +9,7 @@ import Foundation
 import Photos
 
 protocol PhotoGalleryDataProviderDelegate {
+    func showPermissionsPopup()
     func providerDidFetchedAssets()
 }
 
@@ -36,10 +37,14 @@ class PhotoGalleryDataProvider {
     
     fileprivate func requestAuthorization() {
         PHPhotoLibrary.requestAuthorization { (newStatus) in
-            guard newStatus == PHAuthorizationStatus.authorized else {return}
+            guard newStatus == PHAuthorizationStatus.authorized else {
+                self.dataProviderDelegate?.showPermissionsPopup()
+                return
+            }
             self.reloadAssets()
         }
     }
+    
     
     func load() {
         
@@ -52,7 +57,6 @@ class PhotoGalleryDataProvider {
     }
     
     func updateSelectedAsset(_ asset: PHAsset) {
-        print(asset)
         if let selectedIndex = _selectedAssets.firstIndex(where: {$0.localIdentifier == asset.localIdentifier}) {
             _selectedAssets.remove(at: selectedIndex)
         } else if _selectedAssets.count < galleryInputModel.selectionLimit {
@@ -84,10 +88,6 @@ extension PhotoGalleryDataProvider: PhotoGalleryDataSource {
     }
     
     func isAssetSelected(_ asset: PHAsset) -> Bool {
-        print("----")
-        print(_selectedAssets.map{$0.localIdentifier})
-        print(asset.localIdentifier)
-        print("----")
         guard _selectedAssets.firstIndex(where: {$0.localIdentifier == asset.localIdentifier}) != nil else {return false}
         return true
     }
