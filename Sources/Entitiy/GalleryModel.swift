@@ -13,6 +13,7 @@ public class GalleryModel {
     public var thumbnailImage: UIImage?
     public var originalImage: UIImage?
     public var editedImage: UIImage?
+    public var originalVideoFilePath: URL?
     public var originalImageFilePath: URL?
     public var thumbnailImageFilePath: URL?
     public var assetType: PHAssetMediaType = .unknown

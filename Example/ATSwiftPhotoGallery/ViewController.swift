@@ -25,6 +25,10 @@ class ViewController: UIViewController {
         module.build(inputModel: nil) { models, isCancelled in
             guard let receivedModels = models else {return}
             print(receivedModels.compactMap{$0.thumbnailImageFilePath})
+            print(receivedModels.compactMap{$0.originalImageFilePath})
+            print(receivedModels.compactMap{$0.originalVideoFilePath})
+            print(receivedModels.compactMap{$0.duration})
+            print(receivedModels.compactMap{$0.assetType.rawValue})
         }
         guard let navigationController = module.navigationController else {return}
         present(navigationController, animated: true, completion: nil)
