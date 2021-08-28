@@ -10,6 +10,10 @@ import Foundation
 public class SwiftPhotoGalleryInputModel {
     public var selectionLimit: Int = 10
     public var selectionMediaColor: UIColor = UIColor.systemBlue
+    public init() {
+        selectionLimit = 30
+        selectionMediaColor = UIColor.systemBlue
+    }
 }
 
 public typealias GalleryModuleCompletionBlock = ([GalleryModel]?, Bool) -> Void
