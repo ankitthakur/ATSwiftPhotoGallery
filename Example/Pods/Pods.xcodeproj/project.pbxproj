@@ -229,16 +229,8 @@
 				ABE88BBB26D98A29001E4DCE /* PhotoGalleryPresenter.swift */,
 				ABE88BBC26D98A29001E4DCE /* PhotoGalleryPresenterToRouterProtocol.swift */,
 				ABE88BBD26D98A29001E4DCE /* PhotoGalleryPresenterToViewProtocol.swift */,
-				ABE88BBE26D98A29001E4DCE /* New Group */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		ABE88BBE26D98A29001E4DCE /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		ABE88BBF26D98A29001E4DCE /* DataProvider */ = {

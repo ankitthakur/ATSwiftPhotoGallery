@@ -64,7 +64,7 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
             model.duration = asset.duration
             mainGroup.enter()
             let group = DispatchGroup()
-            
+            let uuid = NSUUID().uuidString
             group.enter()
             
             // this will be used for both video and image
@@ -77,10 +77,19 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
                 }
                 print("info - \(metaData)")
                 model.originalImage = receivedImage
+                model.originalImageSize = receivedImage.size
                 
-                let modelPath = temporaryDirectoryURL.appendingPathComponent("\(asset.localIdentifier).png")
-                FileManager.default.createFile(atPath: modelPath.absoluteString, contents: receivedImage.pngData(), attributes: nil)
+                let modelPath = temporaryDirectoryURL.appendingPathComponent("\(uuid).png")
+                FileManager.default.createFile(atPath: modelPath.path, contents: receivedImage.pngData() ?? Data())
                 model.originalImageFilePath = modelPath
+                
+                do {
+                    let attributes = try FileManager.default.attributesOfItem(atPath: modelPath.path)
+                    model.mediaSizeInBytes = attributes[FileAttributeKey.size] as? UInt64 ?? UInt64(0)
+                } catch let error {
+                    print("\(#line) \(error)")
+                }
+                
                 group.leave()
             }
             group.enter()
@@ -93,10 +102,10 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
                 }
                 print("info - \(metaData)")
                 model.thumbnailImage = receivedImage
-                let modelPath = temporaryDirectoryURL.appendingPathComponent("\(asset.localIdentifier)_thumb.png")
-                FileManager.default.createFile(atPath: modelPath.absoluteString, contents: receivedImage.pngData(), attributes: nil)
+                let modelPath = temporaryDirectoryURL.appendingPathComponent("\(uuid)_thumb.png")
+                FileManager.default.createFile(atPath: modelPath.path, contents: receivedImage.pngData() ?? Data())
                 model.thumbnailImageFilePath = modelPath
-                
+                model.thumbnailImageSize = receivedImage.size
                 group.leave()
             }
             
@@ -116,10 +125,14 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
                     
                     do {
                         try FileManager.default.copyItem(at: videoAsset.url, to: modelPath)
+                        let attributes = try FileManager.default.attributesOfItem(atPath: modelPath.absoluteString)
                         model.originalVideoFilePath = modelPath
+                        model.mediaSizeInBytes = attributes[FileAttributeKey.size] as? UInt64 ?? UInt64(0)
                     } catch let error {
-                        print(error)
+                        print("\(#line) \(error)")
+                        let attributes = try? FileManager.default.attributesOfItem(atPath: videoAsset.url.absoluteString)
                         model.originalVideoFilePath = videoAsset.url
+                        model.mediaSizeInBytes = attributes?[FileAttributeKey.size] as? UInt64 ?? UInt64(0)
                     }
                     group.leave()
                 }

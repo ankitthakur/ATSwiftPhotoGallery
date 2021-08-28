@@ -23,12 +23,21 @@ class ViewController: UIViewController {
     @IBAction func loadSwiftPhotoGallery() {
         let module = SwiftPhotoGalleryModule()
         module.build(inputModel: nil) { models, isCancelled in
-            guard let receivedModels = models else {return}
-            print(receivedModels.compactMap{$0.thumbnailImageFilePath})
-            print(receivedModels.compactMap{$0.originalImageFilePath})
-            print(receivedModels.compactMap{$0.originalVideoFilePath})
-            print(receivedModels.compactMap{$0.duration})
-            print(receivedModels.compactMap{$0.assetType.rawValue})
+            guard let mediaModels = models else {return}
+            for model in mediaModels {
+                print("""
+                                        localIdentifier- \(model.localIdentifier)
+                                        thumbnailImage- \(model.thumbnailImage)
+                                        originalImage- \(model.originalImage)
+                                        originalVideoFilePath- \(model.originalVideoFilePath)
+                                        originalImageFilePath- \(model.originalImageFilePath)
+                                        originalImageSize- \(model.originalImageSize)
+                                        thumbnailImageSize- \(model.thumbnailImageSize)
+                                        mediaSizeInBytes- \(model.mediaSizeInBytes)
+                                        assetType- \(model.assetType)
+                                        duration in seconds - \(model.duration)
+                    """)
+            }
         }
         guard let navigationController = module.navigationController else {return}
         present(navigationController, animated: true, completion: nil)

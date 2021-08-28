@@ -8,9 +8,8 @@
 import Foundation
 
 public class SwiftPhotoGalleryInputModel {
-    var selectionLimit: Int = 3
-    var selectionMediaColor: UIColor = UIColor.blue
-    var selectionMediaBorderWidth: CGFloat = 4.0
+    public var selectionLimit: Int = 10
+    public var selectionMediaColor: UIColor = UIColor.systemBlue
 }
 
 public typealias GalleryModuleCompletionBlock = ([GalleryModel]?, Bool) -> Void
@@ -27,7 +26,7 @@ public class SwiftPhotoGalleryModule: NSObject {
     internal let dataProvider = PhotoGalleryDataProvider()
 
     public func build(inputModel: SwiftPhotoGalleryInputModel? = nil, withCompletionBlock completion: GalleryModuleCompletionBlock? = nil) {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: type(of: self)))
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: SwiftPhotoGalleryModule.self))
         guard let navController = storyboard.instantiateInitialViewController() as? UINavigationController,
               let view = storyboard.instantiateViewController(withIdentifier: "SwiftPhotoGalleryViewController") as? SwiftPhotoGalleryViewController else {return}
         navigationController = navController

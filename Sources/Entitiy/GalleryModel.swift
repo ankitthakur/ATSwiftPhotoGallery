@@ -18,4 +18,7 @@ public class GalleryModel {
     public var thumbnailImageFilePath: URL?
     public var assetType: PHAssetMediaType = .unknown
     public var duration: TimeInterval = 0
+    public var mediaSizeInBytes: UInt64?
+    public var originalImageSize: CGSize?
+    public var thumbnailImageSize: CGSize?
 }

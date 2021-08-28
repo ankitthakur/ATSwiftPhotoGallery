@@ -25,7 +25,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
     
     func loadAsset(asset: PHAsset, isSelected selected: Bool, with galleryThemeModel: SwiftPhotoGalleryInputModel) {
-        let bundle = Bundle(for: type(of: self))
+        let bundle = Bundle(for: ImageCollectionViewCell.self)
         selectionImageView.image = selected ? UIImage(named: "checkmark.circle.fill", in: bundle, compatibleWith: nil) : UIImage(named: "checkmark.circle", in: bundle, compatibleWith: nil)
         selectionImageView.layer.borderColor = selected ? UIColor.white.cgColor : UIColor.clear.cgColor
         selectionImageView.backgroundColor = selected ? UIColor.white : UIColor.clear
