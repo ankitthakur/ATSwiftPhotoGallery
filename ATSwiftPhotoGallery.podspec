@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name             = 'ATSwiftPhotoGallery'
-  spec.version          = '1.0.0'
+  spec.version          = '1.0.1'
   spec.summary          = 'Pure Swift library for selecting multiple photos.'
   spec.swift_version    = '5.0'
 
@@ -33,15 +33,8 @@ Pod::Spec.new do |spec|
   spec.swift_version  = '5.0'
   spec.ios.deployment_target  = '12.4'
 
-  spec.source_files       = "Sources/**/*.{swift}"
-#
-#  .ios.resource_bundle = {
-#    'ATSwiftPhotoGallery' => ["Sources/**/*.{storyboard, xcassets}"]
-#  }
-  spec.resource_bundle = {
-      'ATSwiftPhotoGallery' => ['Sources/**/*.{xib,storyboard,xcassets}']
-  }
-  # spec.public_header_files = 'Pod/Classes/**/*.h'
-  spec.frameworks = 'Photos'
+  spec.ios.source_files       = "Sources/**/*.{swift}"
+  spec.ios.resources = "Sources/**/*.{lproj,storyboard,xcdatamodeld,xib,xcassets,json}"
+  spec.ios.frameworks = 'Photos'
 #  spec.dependency 'Kingfisher'
 end
