@@ -35,10 +35,9 @@ Pod::Spec.new do |spec|
 
   spec.source_files       = "Sources/**/*.{swift}"
 
-  spec.ios.resource_bundle = {
-    'ATSwiftPhotoGallery' => ["Sources/**/*.{storyboard, xcassets}"]
+  spec.resource_bundles = {
+      'ATSwiftPhotoGallery' => ['SDK/*/*.{xib,storyboard,xcassets}']
   }
-
   # spec.public_header_files = 'Pod/Classes/**/*.h'
   spec.frameworks = 'Photos'
 #  spec.dependency 'Kingfisher'
