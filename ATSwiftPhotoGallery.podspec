@@ -34,9 +34,12 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target  = '12.4'
 
   spec.source_files       = "Sources/**/*.{swift}"
-
-  spec.resource_bundles = {
-      'ATSwiftPhotoGallery' => ['SDK/*/*.{xib,storyboard,xcassets}']
+#
+#  .ios.resource_bundle = {
+#    'ATSwiftPhotoGallery' => ["Sources/**/*.{storyboard, xcassets}"]
+#  }
+  spec.resource_bundle = {
+      'ATSwiftPhotoGallery' => ['Sources/**/*.{xib,storyboard,xcassets}']
   }
   # spec.public_header_files = 'Pod/Classes/**/*.h'
   spec.frameworks = 'Photos'
