@@ -36,6 +36,10 @@ class ImageCollectionViewCell: UICollectionViewCell {
         icloudImageView.isHidden = isLocallyAvailable
         icloudImageView.tintColor = .lightGray
         
+        if isLocallyAvailable == false {
+            selectionImageView.isHidden = true
+        }
+        
         PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: nil) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
             guard let weakSelf = self else {return}
             weakSelf.galleryImageView.image = image

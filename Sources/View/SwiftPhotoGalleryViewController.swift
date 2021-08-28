@@ -56,6 +56,21 @@ extension SwiftPhotoGalleryViewController: UICollectionViewDelegate, UICollectio
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let asset = dataSource.galleryAssets?[indexPath.row] else {return}
+        let resourceArray = PHAssetResource.assetResources(for: asset)
+        let isLocallyAvailable = resourceArray.first?.value(forKey: "locallyAvailable") as? Bool ?? false // If this returns NO, then the asset is in iCloud and not saved locally yet
+        
+        if isLocallyAvailable == false {
+            let alert = UIAlertController(title: nil,
+                                          message: "This media is not downloaded from cloud, so cann't be selected.",
+                                          preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK",
+                                             style: .cancel,
+                                             handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         presenter.didSelectAsset(asset: asset)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: { [weak self] in
             guard let weakSelf = self,
