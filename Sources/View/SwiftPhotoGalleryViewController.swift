@@ -57,6 +57,12 @@ extension SwiftPhotoGalleryViewController: UICollectionViewDelegate, UICollectio
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let asset = dataSource.galleryAssets?[indexPath.row] else {return}
         presenter.didSelectAsset(asset: asset)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: { [weak self] in
+            guard let weakSelf = self,
+                  let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell,
+                  let asset = weakSelf.dataSource.galleryAssets?[indexPath.row] else {return}
+            cell.loadAsset(asset: asset, isSelected: weakSelf.dataSource.isAssetSelected(asset), with: weakSelf.dataSource.galleryThemeModel)
+        })
     }
 }
 
@@ -98,6 +104,15 @@ extension SwiftPhotoGalleryViewController: PhotoGalleryPresenterToViewProtocol {
         }
     }
     
+    func showManagePermissions() {
+        DispatchQueue.main.async {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancelTapped))
+            let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.doneTapped))
+            let manageSettings = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.settingsTapped))
+            self.navigationItem.rightBarButtonItems = [done, manageSettings]
+        }
+    }
+    
     
     @objc func cancelTapped() {
         presenter.cancelTapped()
@@ -105,5 +120,9 @@ extension SwiftPhotoGalleryViewController: PhotoGalleryPresenterToViewProtocol {
     
     @objc func doneTapped() {
         presenter.doneTapped()
+    }
+    
+    @objc func settingsTapped() {
+        dataSource.reRequestPermissions()
     }
 }

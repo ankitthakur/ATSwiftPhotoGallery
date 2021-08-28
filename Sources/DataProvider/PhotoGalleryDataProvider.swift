@@ -10,6 +10,7 @@ import Photos
 
 protocol PhotoGalleryDataProviderDelegate {
     func showPermissionsPopup()
+    func showManagePermissions()
     func providerDidFetchedAssets()
 }
 
@@ -18,6 +19,7 @@ protocol PhotoGalleryDataSource {
     var selectedAssets: [PHAsset] {get}
     var galleryThemeModel: SwiftPhotoGalleryInputModel {get}
     func isAssetSelected(_ asset: PHAsset) -> Bool
+    func reRequestPermissions()
 }
 
 class PhotoGalleryDataProvider {
@@ -36,23 +38,54 @@ class PhotoGalleryDataProvider {
     }()
     
     fileprivate func requestAuthorization() {
-        PHPhotoLibrary.requestAuthorization { (newStatus) in
-            guard newStatus == PHAuthorizationStatus.authorized else {
-                self.dataProviderDelegate?.showPermissionsPopup()
-                return
+        if #available(iOS 14, *) {
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { newStatus in
+                guard newStatus == PHAuthorizationStatus.authorized else {
+                    self.dataProviderDelegate?.showPermissionsPopup()
+                    return
+                }
+                self.reloadAssets()
             }
-            self.reloadAssets()
+        } else {
+            // Fallback on earlier versions
+            PHPhotoLibrary.requestAuthorization { (newStatus) in
+                guard newStatus == PHAuthorizationStatus.authorized else {
+                    self.dataProviderDelegate?.showPermissionsPopup()
+                    return
+                }
+                self.reloadAssets()
+            }
         }
+        
     }
     
     
     func load() {
         
-        if PHPhotoLibrary.authorizationStatus() == .authorized {
-            reloadAssets()
+        if #available(iOS 14, *) {
+            let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+            if status == .limited {
+                // limited
+                print("limited")
+                self.dataProviderDelegate?.showManagePermissions()
+                reloadAssets()
+            } else if status == .authorized {
+                print("authorized")
+                reloadAssets()
+            } else {
+                print("none")
+                requestAuthorization()
+            }
         } else {
-            requestAuthorization()
+            // Fallback on earlier versions
+            if PHPhotoLibrary.authorizationStatus() == .authorized {
+                reloadAssets()
+            } else {
+                requestAuthorization()
+            }
         }
+        
+        
         
     }
     
@@ -62,7 +95,7 @@ class PhotoGalleryDataProvider {
         } else if _selectedAssets.count < galleryInputModel.selectionLimit {
             _selectedAssets.append(asset)
         }
-        dataProviderDelegate?.providerDidFetchedAssets()
+//        dataProviderDelegate?.providerDidFetchedAssets()
     }
     
     
@@ -90,5 +123,9 @@ extension PhotoGalleryDataProvider: PhotoGalleryDataSource {
     func isAssetSelected(_ asset: PHAsset) -> Bool {
         guard _selectedAssets.firstIndex(where: {$0.localIdentifier == asset.localIdentifier}) != nil else {return false}
         return true
+    }
+    
+    func reRequestPermissions() {
+        self.requestAuthorization()
     }
 }

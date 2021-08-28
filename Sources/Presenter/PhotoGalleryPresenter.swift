@@ -28,6 +28,9 @@ extension PhotoGalleryPresenter: PhotoGalleryDataProviderDelegate {
     func showPermissionsPopup() {
         view?.showPermissionsPopup()
     }
+    func showManagePermissions() {
+        view?.showManagePermissions()
+    }
 }
 
 extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
@@ -63,48 +66,53 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
             let group = DispatchGroup()
             
             group.enter()
-            group.enter()
-            if asset.mediaType == .video {
-                group.enter()
-            }
+            
             // this will be used for both video and image
             PHImageManager.default().requestImage(for: asset, targetSize: UIScreen.main.bounds.size, contentMode: .aspectFit, options: nil) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
-                guard nil != self, let receivedImage = image, let metaData = info,
-                      let PHImageResultIsDegradedKey = metaData["PHImageResultIsDegradedKey"] as? Int else {
+                guard model.originalImage == nil else {return}
+                guard nil != self, let receivedImage = image,
+                      let metaData = info else {
                     group.leave()
                     return
                 }
-                if PHImageResultIsDegradedKey == 0 {
-                    model.originalImage = receivedImage
-                } else if PHImageResultIsDegradedKey == 1 {
-                    model.thumbnailImage = receivedImage
-                }
-                var modelPath = temporaryDirectoryURL.appendingPathComponent("\(asset.localIdentifier).png")
-                if PHImageResultIsDegradedKey == 1 {
-                    modelPath = temporaryDirectoryURL.appendingPathComponent("\(asset.localIdentifier)_thumb.png")
-                }
+                print("info - \(metaData)")
+                model.originalImage = receivedImage
+                
+                let modelPath = temporaryDirectoryURL.appendingPathComponent("\(asset.localIdentifier).png")
                 FileManager.default.createFile(atPath: modelPath.absoluteString, contents: receivedImage.pngData(), attributes: nil)
-                if PHImageResultIsDegradedKey == 0 {
-                    model.originalImageFilePath = modelPath
-                } else if PHImageResultIsDegradedKey == 1 {
-                    model.thumbnailImageFilePath = modelPath
+                model.originalImageFilePath = modelPath
+                group.leave()
+            }
+            group.enter()
+            
+            PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 120, height: 120), contentMode: .aspectFit, options: nil) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
+                guard model.thumbnailImage == nil else {return}
+                guard nil != self, let receivedImage = image, let metaData = info else {
+                    group.leave()
+                    return
                 }
+                print("info - \(metaData)")
+                model.thumbnailImage = receivedImage
+                let modelPath = temporaryDirectoryURL.appendingPathComponent("\(asset.localIdentifier)_thumb.png")
+                FileManager.default.createFile(atPath: modelPath.absoluteString, contents: receivedImage.pngData(), attributes: nil)
+                model.thumbnailImageFilePath = modelPath
+                
                 group.leave()
             }
             
             
             if asset.mediaType == .video {
-                
+                group.enter()
                 PHCachingImageManager().requestAVAsset(forVideo: asset, options: nil) {[weak self] (videoasset, audioMix, info) in
                     guard nil != self, let videoAsset = videoasset as? AVURLAsset,
-                          let metaData = info else {
+                          let _ = info else {
                         group.leave()
                         return
                     }
                     
                     model.duration = videoAsset.duration.seconds
                     let lastPathComponent = videoAsset.url.lastPathComponent
-                    var modelPath = temporaryDirectoryURL.appendingPathComponent("\(lastPathComponent)")
+                    let modelPath = temporaryDirectoryURL.appendingPathComponent("\(lastPathComponent)")
                     
                     do {
                         try FileManager.default.copyItem(at: videoAsset.url, to: modelPath)

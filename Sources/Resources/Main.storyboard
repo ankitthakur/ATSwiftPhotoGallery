@@ -29,7 +29,7 @@
         <!--Swift Photo Gallery View Controller-->
         <scene sceneID="v7e-Rk-nt6">
             <objects>
-                <viewController storyboardIdentifier="SwiftPhotoGalleryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eJK-lg-c9i" customClass="SwiftPhotoGalleryViewController" customModule="SwiftPhotoGallery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SwiftPhotoGalleryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eJK-lg-c9i" customClass="SwiftPhotoGalleryViewController" customModule="ATSwiftPhotoGallery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4J4-5i-6MU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,7 +44,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ImageCollectionViewCell" reuseIdentifier="ImageCollectionViewCell" id="pCA-L1-DcF" customClass="ImageCollectionViewCell" customModule="SwiftPhotoGallery" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ImageCollectionViewCell" reuseIdentifier="ImageCollectionViewCell" id="pCA-L1-DcF" customClass="ImageCollectionViewCell" customModule="ATSwiftPhotoGallery" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DRy-dd-DsA">
@@ -57,16 +57,48 @@
                                                         <constraint firstAttribute="width" secondItem="nCb-Fy-zgY" secondAttribute="height" multiplier="1:1" id="IuA-iE-tx7"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnx-TZ-z7h">
+                                                    <rect key="frame" x="127" y="127" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.81568627449999997" green="0.84263789649999998" blue="0.87451487780000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle" translatesAutoresizingMaskIntoConstraints="NO" id="3dt-Bm-oIM">
+                                                    <rect key="frame" x="98" y="5" width="25" height="25"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="0DF-Be-PHw"/>
+                                                        <constraint firstAttribute="width" secondItem="3dt-Bm-oIM" secondAttribute="height" multiplier="1:1" id="Mkc-yr-Fia"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud" translatesAutoresizingMaskIntoConstraints="NO" id="rx9-CX-kVe">
+                                                    <rect key="frame" x="2" y="109" width="17" height="17"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="rx9-CX-kVe" secondAttribute="height" multiplier="1:1" id="1LK-ea-WRg"/>
+                                                        <constraint firstAttribute="width" constant="17" id="cgR-3K-ZeV"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="rx9-CX-kVe" firstAttribute="width" secondItem="rx9-CX-kVe" secondAttribute="height" multiplier="1:1" id="ErE-PC-Ecc"/>
+                                                <constraint firstItem="rx9-CX-kVe" firstAttribute="leading" secondItem="DRy-dd-DsA" secondAttribute="leading" constant="2" id="F9r-HV-RDu"/>
                                                 <constraint firstItem="nCb-Fy-zgY" firstAttribute="leading" secondItem="DRy-dd-DsA" secondAttribute="leading" id="GkB-yt-ySt"/>
+                                                <constraint firstAttribute="bottom" secondItem="rx9-CX-kVe" secondAttribute="bottom" constant="2" id="Guv-P3-xGu"/>
                                                 <constraint firstItem="nCb-Fy-zgY" firstAttribute="centerX" secondItem="DRy-dd-DsA" secondAttribute="centerX" id="b3e-tt-RCE"/>
                                                 <constraint firstItem="nCb-Fy-zgY" firstAttribute="centerY" secondItem="DRy-dd-DsA" secondAttribute="centerY" id="jdH-rN-qZv"/>
+                                                <constraint firstItem="3dt-Bm-oIM" firstAttribute="top" secondItem="DRy-dd-DsA" secondAttribute="top" constant="5" id="mYd-dF-0Cp"/>
                                                 <constraint firstItem="nCb-Fy-zgY" firstAttribute="top" secondItem="DRy-dd-DsA" secondAttribute="top" id="mrb-Eb-5wt"/>
+                                                <constraint firstAttribute="trailing" secondItem="3dt-Bm-oIM" secondAttribute="trailing" constant="5" id="nFg-Pu-h7k"/>
+                                                <constraint firstAttribute="trailing" secondItem="fnx-TZ-z7h" secondAttribute="trailing" constant="1" id="nKZ-63-LKQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="fnx-TZ-z7h" secondAttribute="bottom" constant="1" id="ywV-4w-zqs"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="galleryImageView" destination="nCb-Fy-zgY" id="iVg-AU-YTa"/>
+                                            <outlet property="icloudImageView" destination="rx9-CX-kVe" id="WRb-gB-gUQ"/>
+                                            <outlet property="selectionImageView" destination="3dt-Bm-oIM" id="QQj-SU-317"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -97,6 +129,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkmark.circle" width="13" height="13"/>
+        <image name="cloud" width="15" height="10"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

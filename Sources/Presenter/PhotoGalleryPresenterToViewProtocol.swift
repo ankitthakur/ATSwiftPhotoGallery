@@ -12,4 +12,5 @@ protocol PhotoGalleryPresenterToViewProtocol: AnyObject {
     func updateFetchedAssetsUI()
     func initializeView()
     func showPermissionsPopup()
+    func showManagePermissions()
 }

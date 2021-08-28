@@ -23,6 +23,7 @@
 		ABE88BD326D98A29001E4DCE /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88BC426D98A29001E4DCE /* ImageCollectionViewCell.swift */; };
 		ABE88BD426D98A29001E4DCE /* SwiftPhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88BC526D98A29001E4DCE /* SwiftPhotoGalleryViewController.swift */; };
 		ABE88BD526D98A29001E4DCE /* SwiftPhotoGalleryModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88BC726D98A29001E4DCE /* SwiftPhotoGalleryModule.swift */; };
+		ABE88BD826DA5093001E4DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE88BD726DA5093001E4DCE /* Assets.xcassets */; };
 		D3AB1A9D0E7062165131D31A9318AEBD /* ATSwiftPhotoGallery-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BAAB44DF19C7B86D0703D9CA2A9679DC /* ATSwiftPhotoGallery-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD57A9ABFE4142287FE0DD9B625B9C08 /* Pods-ATSwiftPhotoGallery_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEB0355D7170D20533E3DB8B4F1B01F /* Pods-ATSwiftPhotoGallery_Tests-dummy.m */; };
 		DEFE45F953DA25C5470F649EEA8B8E6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -82,6 +83,7 @@
 		ABE88BC426D98A29001E4DCE /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		ABE88BC526D98A29001E4DCE /* SwiftPhotoGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		ABE88BC726D98A29001E4DCE /* SwiftPhotoGalleryModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPhotoGalleryModule.swift; sourceTree = "<group>"; };
+		ABE88BD726DA5093001E4DCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACD9A91AE5D148FA691922B5FE7B3816 /* ATSwiftPhotoGallery.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ATSwiftPhotoGallery.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B1E7E2E36D2ED8817F0987B80FA24208 /* ATSwiftPhotoGallery-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ATSwiftPhotoGallery-dummy.m"; sourceTree = "<group>"; };
 		B20DB5059E292135631D64E0A932469D /* ATSwiftPhotoGallery-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ATSwiftPhotoGallery-Info.plist"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				ABE88BB826D98A29001E4DCE /* Main.storyboard */,
+				ABE88BD726DA5093001E4DCE /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABE88BD826DA5093001E4DCE /* Assets.xcassets in Resources */,
 				ABE88BCB26D98A29001E4DCE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
