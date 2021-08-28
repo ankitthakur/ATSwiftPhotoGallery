@@ -35,7 +35,7 @@ Pod::Spec.new do |spec|
 
   spec.source_files       = "Sources/**/*.{swift}"
 
-  spec.resource_bundles = {
+  spec.ios.resource_bundle = {
     'ATSwiftPhotoGallery' => ["Sources/**/*.{storyboard, xcassets}"]
   }
 
