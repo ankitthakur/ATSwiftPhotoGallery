@@ -19,6 +19,7 @@ public class GalleryModel {
     public var assetType: PHAssetMediaType = .unknown
     public var duration: TimeInterval = 0
     public var mediaSizeInBytes: UInt64?
+    public var mediaName: String?
     public var originalImageSize: CGSize?
     public var thumbnailImageSize: CGSize?
 }

@@ -8,6 +8,7 @@
 import Foundation
 import Photos
 
+typealias ExportedURLCallback = (URL?) -> Void
 class PhotoGalleryPresenter {
     
     weak var view: PhotoGalleryPresenterToViewProtocol!
@@ -113,7 +114,8 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
             if asset.mediaType == .video {
                 group.enter()
                 PHCachingImageManager().requestAVAsset(forVideo: asset, options: nil) {[weak self] (videoasset, audioMix, info) in
-                    guard nil != self, let videoAsset = videoasset as? AVURLAsset,
+                    guard let weakSelf = self,
+                          let videoAsset = videoasset as? AVURLAsset,
                           let _ = info else {
                         group.leave()
                         return
@@ -121,20 +123,32 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
                     
                     model.duration = videoAsset.duration.seconds
                     let lastPathComponent = videoAsset.url.lastPathComponent
-                    let modelPath = temporaryDirectoryURL.appendingPathComponent("\(lastPathComponent)")
+                    model.mediaName = lastPathComponent
+                    let modelPath = temporaryDirectoryURL.appendingPathComponent("\(uuid)_\(lastPathComponent)")
                     
-                    do {
-                        try FileManager.default.copyItem(at: videoAsset.url, to: modelPath)
-                        let attributes = try FileManager.default.attributesOfItem(atPath: modelPath.absoluteString)
-                        model.originalVideoFilePath = modelPath
-                        model.mediaSizeInBytes = attributes[FileAttributeKey.size] as? UInt64 ?? UInt64(0)
-                    } catch let error {
-                        print("\(#line) \(error)")
-                        let attributes = try? FileManager.default.attributesOfItem(atPath: videoAsset.url.absoluteString)
-                        model.originalVideoFilePath = videoAsset.url
-                        model.mediaSizeInBytes = attributes?[FileAttributeKey.size] as? UInt64 ?? UInt64(0)
+                    weakSelf.copyVideoToAppDir(videoAsset: videoAsset, destinationPath: modelPath) { url in
+                        if url != nil {
+                            do {
+                                let attributes = try FileManager.default.attributesOfItem(atPath: modelPath.path)
+                                model.originalVideoFilePath = modelPath
+                                model.mediaSizeInBytes = attributes[FileAttributeKey.size] as? UInt64 ?? UInt64(0)
+                            }
+                            catch let error {
+                                print("\(#line) \(error)")
+                                let attributes = try? FileManager.default.attributesOfItem(atPath: videoAsset.url.absoluteString)
+                                model.originalVideoFilePath = videoAsset.url
+                                model.mediaSizeInBytes = attributes?[FileAttributeKey.size] as? UInt64 ?? UInt64(0)
+                                
+                                group.leave()
+                            }
+                        } else {
+                            let attributes = try? FileManager.default.attributesOfItem(atPath: videoAsset.url.absoluteString)
+                            model.originalVideoFilePath = videoAsset.url
+                            model.mediaSizeInBytes = attributes?[FileAttributeKey.size] as? UInt64 ?? UInt64(0)
+                            
+                            group.leave()
+                        }
                     }
-                    group.leave()
                 }
             }
             
@@ -153,7 +167,52 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
             SwiftPhotoGalleryEventManager.shared.didReceiveGallery(models, isCancelled: false)
             navigationController.dismiss(animated: true, completion: nil)
         })
-
+    }
+    
+    func copyVideoToAppDir(videoAsset: AVURLAsset, destinationPath: URL, handler: ExportedURLCallback?) {
+        
+        do {
+            var _:  CMTime!
+            
+            try deleteIfExists(path: destinationPath)
+            
+            let startTime = CMTime.zero
+            let assetDurationSeconds = CMTimeGetSeconds(videoAsset.duration)
+            var range: CMTimeRange!
+            let stopTime = CMTimeMakeWithSeconds(assetDurationSeconds, preferredTimescale: 1)
+            range = CMTimeRangeFromTimeToTime(start: startTime, end: stopTime)
+            guard let exporter :AVAssetExportSession = AVAssetExportSession(asset: videoAsset, presetName: AVAssetExportPresetHighestQuality) else {
+                handler?(nil)
+                return
+            }
+            exporter.outputURL = destinationPath
+            exporter.outputFileType = AVFileType.mp4
+            exporter.timeRange = range
+            exporter.exportAsynchronously { () -> Void in
+                switch exporter.status {
+                case  .failed:
+                    print("failed import video: \(String(describing: exporter.error))")
+                    handler?(nil)
+                case .cancelled:
+                    print("cancelled import video: \(String(describing: exporter.error))")
+                    handler?(nil)
+                default:
+                    print("completed import video")
+                    print(destinationPath)
+                    handler?(destinationPath)
+                    
+                }
+            }
+            
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    func deleteIfExists(path: URL) throws {
+        if (FileManager.default.fileExists(atPath: path.path)) {
+            try FileManager.default.removeItem(atPath: path.path)
+        }
     }
 }
 
