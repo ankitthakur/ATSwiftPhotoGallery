@@ -132,20 +132,19 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
                                 let attributes = try FileManager.default.attributesOfItem(atPath: modelPath.path)
                                 model.originalVideoFilePath = modelPath
                                 model.mediaSizeInBytes = attributes[FileAttributeKey.size] as? UInt64 ?? UInt64(0)
+                                group.leave()
                             }
                             catch let error {
                                 print("\(#line) \(error)")
                                 let attributes = try? FileManager.default.attributesOfItem(atPath: videoAsset.url.absoluteString)
                                 model.originalVideoFilePath = videoAsset.url
                                 model.mediaSizeInBytes = attributes?[FileAttributeKey.size] as? UInt64 ?? UInt64(0)
-                                
                                 group.leave()
                             }
                         } else {
                             let attributes = try? FileManager.default.attributesOfItem(atPath: videoAsset.url.absoluteString)
                             model.originalVideoFilePath = videoAsset.url
                             model.mediaSizeInBytes = attributes?[FileAttributeKey.size] as? UInt64 ?? UInt64(0)
-                            
                             group.leave()
                         }
                     }
