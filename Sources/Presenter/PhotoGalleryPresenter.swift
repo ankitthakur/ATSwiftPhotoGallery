@@ -62,14 +62,18 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
         
         for asset in dataProvider.selectedAssets {
             let model = GalleryModel()
+            let retinaMultiplier = UIScreen.main.scale
+            
             model.duration = asset.duration
             mainGroup.enter()
             let group = DispatchGroup()
             let uuid = NSUUID().uuidString
             group.enter()
             
+            let highQualityOptions = PHImageRequestOptions()
+            highQualityOptions.deliveryMode = .highQualityFormat
             // this will be used for both video and image
-            PHImageManager.default().requestImage(for: asset, targetSize: UIScreen.main.bounds.size, contentMode: .aspectFit, options: nil) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
+            PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: highQualityOptions) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
                 guard model.originalImage == nil else {return}
                 guard nil != self, let receivedImage = image,
                       let metaData = info else {
@@ -95,7 +99,11 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
             }
             group.enter()
             
-            PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 120, height: 120), contentMode: .aspectFit, options: nil) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
+            
+            let retinaSquare = CGSize(width: 240 * retinaMultiplier, height: 240 * retinaMultiplier);
+
+            
+            PHImageManager.default().requestImage(for: asset, targetSize: retinaSquare, contentMode: .aspectFit, options: highQualityOptions) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
                 guard model.thumbnailImage == nil else {return}
                 guard nil != self, let receivedImage = image, let metaData = info else {
                     group.leave()
