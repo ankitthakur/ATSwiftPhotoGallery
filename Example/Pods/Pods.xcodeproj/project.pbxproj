@@ -11,6 +11,7 @@
 		3A138C93D246FB607681F6B81EECE63C /* Pods-ATSwiftPhotoGallery_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 507CAC8F6C4A93D486B5008CBB8E076B /* Pods-ATSwiftPhotoGallery_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C38B9D26E4730F7820FE1BEE1B3B5D9 /* Pods-ATSwiftPhotoGallery_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C63DC10A48D15848AE8E368D0F37429 /* Pods-ATSwiftPhotoGallery_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5C242945AC5D0FCAA7E940C99FCD26A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		ABE4377126E911B000EA3F9F /* PhotoGalleryAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE4377026E911B000EA3F9F /* PhotoGalleryAnimator.swift */; };
 		ABE88BC926D98A29001E4DCE /* SwiftPhotoGalleryEventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88BB426D98A29001E4DCE /* SwiftPhotoGalleryEventManager.swift */; };
 		ABE88BCA26D98A29001E4DCE /* GalleryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE88BB626D98A29001E4DCE /* GalleryModel.swift */; };
 		ABE88BCB26D98A29001E4DCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABE88BB826D98A29001E4DCE /* Main.storyboard */; };
@@ -71,6 +72,7 @@
 		92C2C49DA7D0AA0251D9E0F1C152C888 /* Pods_ATSwiftPhotoGallery_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ATSwiftPhotoGallery_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F4BABAE27A6F731FC89D4172ECB2612 /* Pods-ATSwiftPhotoGallery_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ATSwiftPhotoGallery_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		ABE4377026E911B000EA3F9F /* PhotoGalleryAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryAnimator.swift; sourceTree = "<group>"; };
 		ABE88BB426D98A29001E4DCE /* SwiftPhotoGalleryEventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPhotoGalleryEventManager.swift; sourceTree = "<group>"; };
 		ABE88BB626D98A29001E4DCE /* GalleryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryModel.swift; sourceTree = "<group>"; };
 		ABE88BB826D98A29001E4DCE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				ABE88BC326D98A29001E4DCE /* PhotoGalleryViewToPresenterProtocol.swift */,
 				ABE88BC426D98A29001E4DCE /* ImageCollectionViewCell.swift */,
 				ABE88BC526D98A29001E4DCE /* SwiftPhotoGalleryViewController.swift */,
+				ABE4377026E911B000EA3F9F /* PhotoGalleryAnimator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				ABE88BD026D98A29001E4DCE /* PhotoGalleryDataProvider.swift in Sources */,
 				ABE88BCC26D98A29001E4DCE /* PhotoGalleryPresenterToInteractorProtocol.swift in Sources */,
 				ABE88BC926D98A29001E4DCE /* SwiftPhotoGalleryEventManager.swift in Sources */,
+				ABE4377126E911B000EA3F9F /* PhotoGalleryAnimator.swift in Sources */,
 				ABE88BD426D98A29001E4DCE /* SwiftPhotoGalleryViewController.swift in Sources */,
 				ABE88BCF26D98A29001E4DCE /* PhotoGalleryPresenterToViewProtocol.swift in Sources */,
 				ABE88BCE26D98A29001E4DCE /* PhotoGalleryPresenterToRouterProtocol.swift in Sources */,

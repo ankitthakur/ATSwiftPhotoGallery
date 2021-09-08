@@ -14,6 +14,7 @@ public class SwiftPhotoGalleryViewController: UIViewController {
     var dataSource: PhotoGalleryDataSource!
     
     @IBOutlet weak var galleryCollectionView: UICollectionView!
+    lazy var indicatorView = PhotoGalleryIndicatorView()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,7 +135,25 @@ extension SwiftPhotoGalleryViewController: PhotoGalleryPresenterToViewProtocol {
     }
     
     @objc func doneTapped() {
-        presenter.doneTapped()
+        indicatorView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(indicatorView)
+        
+        indicatorView.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        indicatorView.widthAnchor.constraint(equalTo: indicatorView.heightAnchor, constant: 0).isActive = true
+        indicatorView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        indicatorView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        
+//        indicatorView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive  = true
+        indicatorView.strokeColor = UIColor.systemBlue
+        indicatorView.lineWidth = 4.0
+        indicatorView.numSegments = 12
+        indicatorView.startAnimating()
+        self.view.bringSubviewToFront(indicatorView)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .microseconds(300)) {[weak self] in
+            guard let weakSelf = self else {return}
+            weakSelf.presenter.doneTapped()
+        }
     }
     
     @objc func settingsTapped() {
