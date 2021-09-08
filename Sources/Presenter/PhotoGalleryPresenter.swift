@@ -73,8 +73,7 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
             let highQualityOptions = PHImageRequestOptions()
             highQualityOptions.deliveryMode = .highQualityFormat
             // this will be used for both video and image
-            PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: highQualityOptions) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
-                guard model.originalImage == nil else {return}
+            PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 1024, height: 1024), contentMode: .aspectFit, options: highQualityOptions) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
                 guard nil != self, let receivedImage = image else {
                     group.leave()
                     return
@@ -99,11 +98,10 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
             group.enter()
             
             
-            let retinaSquare = CGSize(width: 240 * retinaMultiplier, height: 240 * retinaMultiplier);
+            let retinaSquare = CGSize(width:120 * retinaMultiplier, height: 120 * retinaMultiplier);
 
             
             PHImageManager.default().requestImage(for: asset, targetSize: retinaSquare, contentMode: .aspectFit, options: highQualityOptions) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
-                guard model.thumbnailImage == nil else {return}
                 guard nil != self, let receivedImage = image else {
                     group.leave()
                     return

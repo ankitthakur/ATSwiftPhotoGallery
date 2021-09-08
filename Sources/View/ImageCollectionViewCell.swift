@@ -36,6 +36,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
         icloudImageView.isHidden = isLocallyAvailable
         icloudImageView.tintColor = .lightGray
         galleryImageView.alpha = 1.0
+        selectionImageView.isHidden = false
         if isLocallyAvailable == false {
             selectionImageView.isHidden = true
             galleryImageView.alpha = 0.2
