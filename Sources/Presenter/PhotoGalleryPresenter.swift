@@ -59,7 +59,7 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
         
         let mainGroup = DispatchGroup()
         let temporaryDirectoryURL = FileManager.default.temporaryDirectory
-        
+        print("processing number of assets - \(dataProvider.selectedAssets.count)")
         for asset in dataProvider.selectedAssets {
             let model = GalleryModel()
             let retinaMultiplier = UIScreen.main.scale
@@ -75,12 +75,11 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
             // this will be used for both video and image
             PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFit, options: highQualityOptions) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
                 guard model.originalImage == nil else {return}
-                guard nil != self, let receivedImage = image,
-                      let metaData = info else {
+                guard nil != self, let receivedImage = image else {
                     group.leave()
                     return
                 }
-                print("info - \(metaData)")
+                
                 model.originalImage = receivedImage
                 model.originalImageSize = receivedImage.size
                 
@@ -105,11 +104,10 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
             
             PHImageManager.default().requestImage(for: asset, targetSize: retinaSquare, contentMode: .aspectFit, options: highQualityOptions) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
                 guard model.thumbnailImage == nil else {return}
-                guard nil != self, let receivedImage = image, let metaData = info else {
+                guard nil != self, let receivedImage = image else {
                     group.leave()
                     return
                 }
-                print("info - \(metaData)")
                 model.thumbnailImage = receivedImage
                 let modelPath = temporaryDirectoryURL.appendingPathComponent("\(uuid)_thumb.png")
                 FileManager.default.createFile(atPath: modelPath.path, contents: receivedImage.pngData() ?? Data())
@@ -167,6 +165,8 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
         }
         
         mainGroup.notify(queue: .main, execute: {[weak self] in
+            
+            print("processing assets completed")
             guard let weakSelf = self,
                   let viewController = weakSelf.view as? UIViewController,
                   let navigationController = viewController.navigationController else {return}

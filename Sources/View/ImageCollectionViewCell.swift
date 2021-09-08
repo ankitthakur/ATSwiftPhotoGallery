@@ -35,9 +35,10 @@ class ImageCollectionViewCell: UICollectionViewCell {
         let isLocallyAvailable = resourceArray.first?.value(forKey: "locallyAvailable") as? Bool ?? false // If this returns NO, then the asset is in iCloud and not saved locally yet
         icloudImageView.isHidden = isLocallyAvailable
         icloudImageView.tintColor = .lightGray
-        
+        galleryImageView.alpha = 1.0
         if isLocallyAvailable == false {
             selectionImageView.isHidden = true
+            galleryImageView.alpha = 0.2
         }
         
         PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: nil) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in

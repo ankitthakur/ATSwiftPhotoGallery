@@ -60,6 +60,7 @@ extension SwiftPhotoGalleryViewController: UICollectionViewDelegate, UICollectio
         let resourceArray = PHAssetResource.assetResources(for: asset)
         let isLocallyAvailable = resourceArray.first?.value(forKey: "locallyAvailable") as? Bool ?? false // If this returns NO, then the asset is in iCloud and not saved locally yet
         
+        
         if isLocallyAvailable == false {
             let alert = UIAlertController(title: nil,
                                           message: "This media is not downloaded from cloud, so cann't be selected.",
