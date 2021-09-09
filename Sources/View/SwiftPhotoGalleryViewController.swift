@@ -12,6 +12,7 @@ public class SwiftPhotoGalleryViewController: UIViewController {
 
     var presenter: PhotoGalleryViewToPresenterProtocol!
     var dataSource: PhotoGalleryDataSource!
+    var widthSize: CGFloat = 0.0
     
     @IBOutlet weak var galleryCollectionView: UICollectionView!
     lazy var indicatorView = PhotoGalleryIndicatorView()
@@ -37,13 +38,15 @@ extension SwiftPhotoGalleryViewController: UICollectionViewDelegate, UICollectio
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.cellIdentifer, for: indexPath) as? ImageCollectionViewCell,
               let asset = dataSource.galleryAssets?[indexPath.row] else {return UICollectionViewCell()}
-        cell.loadAsset(asset: asset, isSelected: dataSource.isAssetSelected(asset), with: dataSource.galleryThemeModel)
+        cell.loadAsset(asset: asset, withWidth: widthSize, isSelected: dataSource.isAssetSelected(asset), with: dataSource.galleryThemeModel)
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width/4 - 1
-        return CGSize(width: width, height: width)
+        if self.widthSize == 0 {
+            widthSize = collectionView.frame.width/4 - 1
+        }
+        return CGSize(width: widthSize, height: widthSize)
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -78,7 +81,8 @@ extension SwiftPhotoGalleryViewController: UICollectionViewDelegate, UICollectio
             guard let weakSelf = self,
                   let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell,
                   let asset = weakSelf.dataSource.galleryAssets?[indexPath.row] else {return}
-            cell.loadAsset(asset: asset, isSelected: weakSelf.dataSource.isAssetSelected(asset), with: weakSelf.dataSource.galleryThemeModel)
+            cell.loadAsset(asset: asset, withWidth: weakSelf.widthSize, isSelected: weakSelf.dataSource.isAssetSelected(asset), with: weakSelf.dataSource.galleryThemeModel)
+            weakSelf.navigationItem.prompt = "\(weakSelf.dataSource.selectedAssets.count)/\(weakSelf.dataSource.galleryThemeModel.selectionLimit) selected"
         })
     }
 }
@@ -88,6 +92,8 @@ extension SwiftPhotoGalleryViewController: PhotoGalleryPresenterToViewProtocol {
     func initializeView() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped))
+        self.title = "Select Photos"
+        self.navigationItem.prompt = "\(self.dataSource.selectedAssets.count)/\(self.dataSource.galleryThemeModel.selectionLimit) selected"
     }
     
     func updateFetchedAssetsUI() {
@@ -136,7 +142,7 @@ extension SwiftPhotoGalleryViewController: PhotoGalleryPresenterToViewProtocol {
     }
     
     @objc func doneTapped() {
-        indicatorView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        indicatorView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(indicatorView)
         

@@ -24,11 +24,15 @@ class ImageCollectionViewCell: UICollectionViewCell {
         selectionImageView.layer.borderColor = UIColor.white.cgColor
     }
     
-    func loadAsset(asset: PHAsset, isSelected selected: Bool, with galleryThemeModel: SwiftPhotoGalleryInputModel) {
+    func loadAsset(asset: PHAsset, withWidth width: CGFloat, isSelected selected: Bool, with galleryThemeModel: SwiftPhotoGalleryInputModel) {
         let bundle = Bundle(for: ImageCollectionViewCell.self)
         selectionImageView.image = selected ? UIImage(named: "checkmark.circle.fill", in: bundle, compatibleWith: nil) : UIImage(named: "checkmark.circle", in: bundle, compatibleWith: nil)
+        selectionImageView.layer.cornerRadius = selectionImageView.bounds.size.width/2
+        selectionImageView.layer.borderWidth = 2
         selectionImageView.layer.borderColor = selected ? UIColor.white.cgColor : UIColor.clear.cgColor
+        
         selectionImageView.backgroundColor = selected ? UIColor.white : UIColor.clear
+        galleryImageView.widthAnchor.constraint(equalToConstant: width).isActive = true
         
         selectionImageView.tintColor = selected ? galleryThemeModel.selectionMediaColor : UIColor.lightGray
         let resourceArray = PHAssetResource.assetResources(for: asset)

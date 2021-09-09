@@ -13,10 +13,10 @@ import QuartzCore
 @IBDesignable
 internal final class PhotoGalleryIndicatorView: UIView {
     /// Specifies the segment animation duration.
-    public var animationDuration: Double = 1
+    public var animationDuration: Double = 0.5
     
     /// Specifies the indicator rotation animatino duration.
-    public var rotationDuration: Double = 10
+    public var rotationDuration: Double = 20
     
     /// Specifies the number of segments in the indicator.
     @IBInspectable
@@ -83,13 +83,16 @@ internal final class PhotoGalleryIndicatorView: UIView {
         // set the weak variables after being added to the layer
         self.replicatorLayer = replicatorLayer
         self.segmentLayer = dot
+        
+        self.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+        self.layer.cornerRadius = 8
     }
     
     override public func layoutSubviews() {
         super.layoutSubviews()
         
         // resize the replicator layer.
-        let maxSize = max(0,min(bounds.width, bounds.height))
+        let maxSize = max(0,min(bounds.width - 8, bounds.height - 8))
         replicatorLayer.bounds = CGRect(x: 0, y: 0, width: maxSize, height: maxSize)
         replicatorLayer.position = CGPoint(x: bounds.width/2, y:bounds.height/2)
         
