@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name             = 'ATSwiftPhotoGallery'
-  spec.version          = '1.0.4'
+  spec.version          = '1.0.4.1'
   spec.summary          = 'Pure Swift library for selecting multiple photos.'
   spec.swift_version    = '5.0'
 

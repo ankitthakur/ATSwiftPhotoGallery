@@ -162,15 +162,19 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
             })
         }
         
-        mainGroup.notify(queue: .main, execute: {[weak self] in
+        mainGroup.notify(queue: .main, execute: {
             
             print("processing assets completed")
-            guard let weakSelf = self,
-                  let viewController = weakSelf.view as? UIViewController,
-                  let navigationController = viewController.navigationController else {return}
-            weakSelf.completion?(models, false)
-            SwiftPhotoGalleryEventManager.shared.didReceiveGallery(models, isCancelled: false)
+            guard let viewController = self.view as? UIViewController,
+                  let navigationController = viewController.navigationController else {
+                print("early exit")
+                return
+            }
             navigationController.dismiss(animated: true, completion: nil)
+            
+            self.completion?(models, false)
+            SwiftPhotoGalleryEventManager.shared.didReceiveGallery(models, isCancelled: false)
+            
         })
     }
     
