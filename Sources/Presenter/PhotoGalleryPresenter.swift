@@ -98,7 +98,7 @@ extension PhotoGalleryPresenter: PhotoGalleryViewToPresenterProtocol {
             group.enter()
             
             
-            let retinaSquare = CGSize(width:120 * retinaMultiplier, height: 120 * retinaMultiplier);
+            let retinaSquare = CGSize(width:256 * retinaMultiplier, height: 256 * retinaMultiplier);
 
             
             PHImageManager.default().requestImage(for: asset, targetSize: retinaSquare, contentMode: .aspectFit, options: highQualityOptions) {[weak self] (image: UIImage?, info: [AnyHashable: Any]?) -> Void in
